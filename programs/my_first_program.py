@@ -1,12 +1,18 @@
 from nada_dsl import *
 
-
 def nada_main():
-    party1 = Party(name="Party1")
-    my_int1 = SecretInteger(Input(name="my_int1", party=party1))
-    my_int2 = SecretInteger(Input(name="my_int2", party=party1))
-
-    # write the computation for your program here - use my_int1 and my_int2 as inputs
-    # make sure you change the output below to be your new output
-
-    return [Output(my_int1, "my_output", party1)]
+    # Define parties
+    party1 = Party(name="Alice")
+    party2 = Party(name="Bob")
+    
+    # Define secret integers as inputs
+    my_int1_party1 = SecretInteger(Input(name="my_int1", party=party1))
+    my_int2_party2 = SecretInteger(Input(name="my_int2", party=party2))
+    
+    # Perform addition of secret integers
+    result = my_int1_party1 + my_int2_party2
+    
+    # Define the output based on the result of your computation
+    output = Output(result, "sum_output", party1, party2)
+    
+    return [output]
